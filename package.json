@@ -1,0 +1,32 @@
+{
+  "name": "@ilefa/bluefit",
+  "version": "1.0.0",
+  "author": "ILEFA Labs",
+  "license": "GPL-3.0",
+  "description": "Internal library to fetch UConn SRC occupancy information",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "rm -rf dist && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ilefa/bluefit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ilefa/bluefit/issues"
+  },
+  "homepage": "https://github.com/ilefa/bluefit#readme",
+  "dependencies": {
+    "axios": "^0.26.1"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.22",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.2"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
+}
