@@ -9,6 +9,8 @@ export const MAXIMUM_CAPACITY = 1000;
  * Returns the current realtime occupancy of
  * the UConn Student Rec Center. If retrieval
  * fails, returns -1.
+ * 
+ * @author [u/MasterEjzz](https://reddit.com/u/MasterEjzz), modified by ILEFA
  */
 export const getOccupancy = async (): Promise<number> => {
     let raw = await axios
