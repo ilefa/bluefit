@@ -26,7 +26,7 @@ Since Bluefit is currently hosted on GitHub packages, you will need to make a ``
 import { getOccupancy } from '@ilefa/bluefit';
 
 // Fetch current occupancy of the Rec Center
-let meals = await getOccupancy();
+let occupants = await getOccupancy();
 
 12
 ```
