@@ -3,13 +3,20 @@ import axios from 'axios';
 const ENDPOINT = 'https://app.safespace.io/veart/socket.io/?EIO=3&transport=polling&t=NkEgHQf.0&sid='
 const ENDPOINT_SID = 'https://app.safespace.io/veart/socket.io/?EIO=3&transport=polling&t=NkEgHPb'
 
+export const MAXIMUM_CAPACITY = 1000;
+
+/**
+ * Returns the current realtime occupancy of
+ * the UConn Student Rec Center. If retrieval
+ * fails, returns -1.
+ */
 export const getOccupancy = async (): Promise<number> => {
     let raw = await axios
         .get(ENDPOINT_SID)
         .then(res => res.data)
         .catch(_ => null);
 
-    if (!raw) return null;
+    if (!raw) return -1;
     
     let { sid } = JSON.parse(raw.substring(raw.indexOf('{')));
     let subscribe = await axios
@@ -23,8 +30,10 @@ export const getOccupancy = async (): Promise<number> => {
         .catch(_ => null);
 
     if (!subscribe || !occupancy)
-        return null;
+        return -1;
 
-    let { occupants } = JSON.parse(occupancy.substring(occupancy.indexOf('{'), occupancy.indexOf('}') + 1));
-    return occupants;
+    return JSON.parse(
+        occupancy.substring(occupancy.indexOf('{'),
+        occupancy.indexOf('}') + 1)
+    );
 }
