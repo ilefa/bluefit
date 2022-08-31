@@ -31,11 +31,14 @@ export const getOccupancy = async (): Promise<number> => {
         .then(res => res.data)
         .catch(_ => null);
 
-    if (!subscribe || !occupancy)
+    if (!subscribe || !occupancy || !occupancy.includes('{'))
         return -1;
 
-    return JSON.parse(
+    let response = JSON.parse(
         occupancy.substring(occupancy.indexOf('{'),
         occupancy.indexOf('}') + 1)
     );
+
+    let fallback = !response.occupants && response.occupants !== 0;
+    return fallback ? -1 : response.occupants;
 }
